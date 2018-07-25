@@ -14,7 +14,7 @@ class DemoController extends Controller
      */
     public function index()
     {
-        return '123';
+        // return '123';
     }
 
     /**

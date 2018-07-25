@@ -1,8 +1,8 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
+//use think\Controller;
 
-class IndexController extends Controller
+class IndexController extends CommonController
 {
     public function index()
     {

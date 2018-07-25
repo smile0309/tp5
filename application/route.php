@@ -29,4 +29,6 @@ Route::get("left","admin/index/left");
 Route::get("main","admin/index/main");
 
 //登录页
-Route::get("login","admin/public/login");
+Route::any("login","admin/public/login");
+//退出页
+Route::get("logout","admin/public/logout");
