@@ -84,7 +84,7 @@ class ArticleController extends CommonController{
 				'artData' => $artData
 			]);
 	}
-	//ajax删除文章
+	//ajax删除文章内容
 	public function ajaxDel(){
 		//判断是否是Ajax请求
 		if(request()->isAjax()){
