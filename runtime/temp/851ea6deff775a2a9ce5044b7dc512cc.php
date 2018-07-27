@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\tp5\public/../application/admin\view\public\login.html";i:1532517031;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:57:"E:\tp5\public/../application/admin\view\public\login.html";i:1532602756;}*/ ?>
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -48,7 +48,7 @@
                     </li>
                     <li>
                         <input type="text" name="captcha" style="width: 100px" class="loginpwd" placeholder="验证码" />
-                        <img src="" alt='验证码' id='changeCaptcha' />
+                        <img src="{：captcha_src()}" alt='验证码' id='changeCaptcha' />
                     </li>
                     <li>
                         <input name="" type="submit" class="loginbtn" value="登录" />
@@ -60,5 +60,13 @@
     </form>
     <div class="loginbm">版权所有 &copy;2016 <a href="http://www.itcast.cn/php">传智播客教育集团 PHP学院</a> </div>
 </body>
+<script type="text/javascript">
+    //单击更换验证码
+    $("#changeCaptcha").on('click',function(){
+        $(this).attr('src',"<?php echo captcha_src(); ?>?_="+Math.random());
+    });
+    //验证码自动执行单击事件（前提是，已经绑定了单击事件）
+    $("#changeCaptcha").click();
+</script>
 
 </html>

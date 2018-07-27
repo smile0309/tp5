@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:55:"E:\tp5\public/../application/admin\view\index\left.html";i:1532342706;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:55:"E:\tp5\public/../application/admin\view\index\left.html";i:1532662342;}*/ ?>
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -33,70 +33,28 @@
     <dl class="leftmenu">
         <dd>
             <div class="title">
-                <span><img src="<?php echo config('admin_static'); ?>/images/leftico01.png" /></span>商品管理
+                <span><img src="<?php echo config('admin_static'); ?>/images/leftico01.png" /></span>分类管理
             </div>
             <ul class="menuson">
                 <li>
-                    <cite></cite><a href="showList.html" target="rightFrame">商品列表</a><i></i></li>
+                    <cite></cite><a href="<?php echo url('admin/category/index'); ?>" target="rightFrame">文章分类列表</a><i></i></li>
                 <li>
-                    <cite></cite><a href="add.html" target="rightFrame">添加商品</a><i></i></li>
+                    <cite></cite><a href="<?php echo url('admin/category/add'); ?>" target="rightFrame">添加文章分类</a><i></i></li>
             </ul>
         </dd>
-        <dd>
-            <div class="title"><span><img src="<?php echo config('admin_static'); ?>/images/leftico01.png" /></span>商品分类</div>
-            <ul class="menuson">
-                <li>
-                    <cite></cite><a href="#">分类列表</a><i></i></li>
-                <li>
-                    <cite></cite><a href="#">添加分类</a><i></i></li>
-            </ul>
-        </dd>        
+
         <dd>
             <div class="title">
-                <span><img src="<?php echo config('admin_static'); ?>/images/leftico01.png" /></span>商品类型
+                <span><img src="<?php echo config('admin_static'); ?>/images/leftico01.png" /></span>文章管理
             </div>
             <ul class="menuson">
                 <li>
-                    <cite></cite><a href="#">类型列表</a><i></i></li>
+                    <cite></cite><a href="<?php echo url('admin/article/index'); ?>" target="rightFrame">文章列表</a><i></i></li>
                 <li>
-                    <cite></cite><a href="#">添加类型</a><i></i></li>
+                    <cite></cite><a href="<?php echo url('admin/article/add'); ?>" target="rightFrame">添加文章</a><i></i></li>
             </ul>
         </dd>
-        <dd>
-            <div class="title">
-                <span><img src="<?php echo config('admin_static'); ?>/images/leftico01.png" /></span>订单管理
-            </div>
-            <ul class="menuson">
-                <li>
-                    <cite></cite><a href="#">留言管理</a><i></i></li>
-                <li>
-                    <cite></cite><a href="#">评论管理</a><i></i></li>
-            </ul>
-        </dd>
-        <dd>
-            <div class="title">
-                <span><img src="<?php echo config('admin_static'); ?>/images/leftico01.png" /></span>会员管理
-            </div>
-            <ul class="menuson">
-                <li>
-                    <cite></cite><a href="#">会员列表</a><i></i></li>
-                <li>
-                    <cite></cite><a href="#">添加会员</a><i></i></li>
-            </ul>
-        </dd>        
-        <dd>
-            <div class="title"><span><img src="<?php echo config('admin_static'); ?>/images/leftico01.png" /></span>权限管理</div>
-            <ul class="menuson">
-                <li>
-                    <cite></cite><a href="#">用户管理</a><i></i></li>
-                <li>
-                    <cite></cite><a href="#">用户组设置</a><i></i></li>
-                <li>
-                    <cite></cite><a href="#">权限设置</a><i></i></li>
-                <li>
-                    <cite></cite><a href="#">其他</a><i></i></li>
-            </ul>
-        </dd>
+        
     </dl>
 </body>
 
