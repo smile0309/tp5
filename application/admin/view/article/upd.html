@@ -34,7 +34,7 @@
                 </li>
                 <li>
                     <label>父分类</label>
-                    <select name="pid" class="dfinput">
+                    <select name="cat_id" class="dfinput">
                         <option value=''>请选择父分类</option>
                         <option value='0'>顶级分类</option>
                         {foreach name='cats' item='cat'}
@@ -42,13 +42,13 @@
                         {/foreach}
                     </select>
                 </li>
-                 <!-- <li>
+                 <li>
                     <label>文章图片</label>
                     <input name="img" id='f' type="file" onchange="change()" />
                     <p>
-                        <img id="preview" alt="" width="200" name="pic" />
+                        <img id="preview" src="/upload/{$artData.ori_img}" alt="" width="200" name="pic" />
                     </p>
-                </li> -->
+                </li>
 
                 <li>
                     <label>文章描述</label>
@@ -77,5 +77,7 @@
         initialFrameWidth:800,
         initialFrameHeight:300,
     });
+
+    $("select[name=cat_id]").val("{$artData['cat_id']}");
 </script>
 </html>

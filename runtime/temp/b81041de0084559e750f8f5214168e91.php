@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:56:"E:\tp5\public/../application/admin\view\article\upd.html";i:1532681319;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:56:"E:\tp5\public/../application/admin\view\article\upd.html";i:1532778747;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -35,7 +35,7 @@
                 </li>
                 <li>
                     <label>父分类</label>
-                    <select name="pid" class="dfinput">
+                    <select name="cat_id" class="dfinput">
                         <option value=''>请选择父分类</option>
                         <option value='0'>顶级分类</option>
                         <?php if(is_array($cats) || $cats instanceof \think\Collection || $cats instanceof \think\Paginator): if( count($cats)==0 ) : echo "" ;else: foreach($cats as $key=>$cat): ?>
@@ -43,13 +43,13 @@
                         <?php endforeach; endif; else: echo "" ;endif; ?>
                     </select>
                 </li>
-                 <!-- <li>
+                 <li>
                     <label>文章图片</label>
                     <input name="img" id='f' type="file" onchange="change()" />
                     <p>
-                        <img id="preview" alt="" width="200" name="pic" />
+                        <img id="preview" src="/upload/<?php echo $artData['ori_img']; ?>" alt="" width="200" name="pic" />
                     </p>
-                </li> -->
+                </li>
 
                 <li>
                     <label>文章描述</label>
@@ -78,5 +78,7 @@
         initialFrameWidth:800,
         initialFrameHeight:300,
     });
+
+    $("select[name=cat_id]").val("<?php echo $artData['cat_id']; ?>");
 </script>
 </html>

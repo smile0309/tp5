@@ -57,4 +57,6 @@ Route::group('admin',function(){
 	Route::post("article/upd","admin/article/upd");
 	//ajax请求删除文章数据
 	Route::get("article/ajaxDel","admin/article/ajaxDel");
+	//文章数据操作
+	Route::get("article/getContent","admin/article/getContent");
 });

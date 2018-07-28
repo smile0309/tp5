@@ -17,5 +17,6 @@ class Article extends Validate{
 	//定义验证场景
 	protected $scene = [
 		'add' => ['title','cat_id'],
+		'upd' => ['title','cat_id']
 	];
 }

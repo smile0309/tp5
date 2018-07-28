@@ -25,14 +25,14 @@ class CategoryController extends CommonController{
 				$this->error('入库失败');
 			}
 
-		}else{
-			//获取所有分类，分配到模板
-			$data = $catModel->select();
-			//对分类数据进行递归处理（无限分类）
-			$cats = $catModel->getSonCat($data);
-			//返回视图，并分配数据
-			return $this->fetch('',['cats'=>$cats]);
-		}	
+		}
+		//获取所有分类，分配到模板
+		$data = $catModel->select();
+		//对分类数据进行递归处理（无限分类）
+		$cats = $catModel->getSonCat($data);
+		//返回视图，并分配数据
+		return $this->fetch('',['cats'=>$cats]);
+			
 	}
 
 	//列表分类方法

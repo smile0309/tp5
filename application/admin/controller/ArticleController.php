@@ -34,6 +34,15 @@ class ArticleController extends CommonController{
 				if($info){
 					//成功，获取上传的目录文件信息，用于存储到数据库中
 					$postData['ori_img'] = $info->getSaveName();
+					//生成缩略图
+					$image = \think\Image::open('./upload/'.$postData['ori_img']);//打开需要生成缩略图的图片
+					$arr_path = explode('\\',$postData['ori_img']);//把图片的目录以\方式炸开
+					$thumb_path = $arr_path[0].'/thumb_'.$arr_path[1];//拼接缩略图的地址
+					// 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.png
+					$image->thumb(150, 150)->save('./upload/'.$thumb_path);
+					//保存缩略图地址到数据库字段中
+					$postData['thumb_img'] = $thumb_path;
+
 				}else{
 					//上传失败，提示信息
 					$this->error($file->getError());
@@ -62,7 +71,7 @@ class ArticleController extends CommonController{
 				->alias('t1')
 				->field('t1.*,t2.cat_name p_name')
 				->join('tp_category t2','t1.cat_id=t2.cat_id','left')
-				->select();
+				->paginate(2);
 		return $this->fetch('',['datas'=>$datas]);
 	}
 	//文章编辑方法
@@ -70,6 +79,36 @@ class ArticleController extends CommonController{
 		//实例化模型
 		$artModel = new Article();
 		$catModel = new Category();
+		//判断是否是post请求
+		if(request()->isPost()){
+			//接收post参数
+			$postData = input('post.');
+			//验证器验证
+			$result = $this->validate($postData,'Article.upd',[],true);
+			if($result!==true){
+				$this->error(implode(',',$result));
+			}
+			//验证成功之后，进行文件上传和缩略图的操作
+			$path = $this->uploadImg('img');
+			if($path){
+				//删除原来的图片
+				//获取原来图片的路径
+				$oldData = $artModel->find($postData['article_id']);
+				if($oldData['ori_img']){
+					unlink('./upload/'.$oldData['ori_img']);
+					unlink('./upload/'.$oldData['thumb_img']);
+				}
+				$postData['ori_img'] = $path['ori_img'];
+				$postData['thumb_img'] = $path['thumb_img'];
+			}
+			//编辑入库
+			if($artModel->update($postData)){
+				$this->success("编辑成功",url('admin/article/index'));
+			}else{
+				$this->error('编辑失败');
+			}
+		}
+
 		//接收传递的id
 		$article_id = input('article_id');
 		//根据id查询数据
@@ -84,20 +123,36 @@ class ArticleController extends CommonController{
 				'artData' => $artData
 			]);
 	}
-	//ajax删除文章内容
+	//删除文章内容
 	public function ajaxDel(){
-		//判断是否是Ajax请求
-		if(request()->isAjax()){
-			//接收传递来的article_id
-			$article_id = input('article_id');
-			//判断是否删除成功
-			if(Article::destroy($article_id)){
-				$response = ['code'=>200,'message'=>'删除成功'];
-				return json($response);die;
-			}else{
-				$response = ['code'=>-1,'message'=>'删除失败'];
-				return json($response);die;
-			}
+		//接收传递来的article_id
+		$article_id = input('article_id');
+		//根据ID获取数据
+		$oldObj = Article::get($article_id);
+		//删除原来的图片
+		if($oldObj['ori_img']){
+			unlink("./upload/".$oldObj['ori_img']);
+			unlink("./upload/".$oldObj['thumb_img']);
+		}
+		//判断是否删除成功
+		if($oldObj->delete()){
+			$response = ['code'=>200,'message'=>'删除成功'];
+			return json($response);die;
+		}else{
+			$response = ['code'=>-1,'message'=>'删除失败'];
+			return json($response);die;
 		}
 	}
+	//ajax获取文章内容
+	public function getContent(){
+		if(request()->isAjax()){
+			//接收article_id
+			$article_id = input('article_id');
+			//获取文章内容
+			$content = Article::where(['article_id'=>$article_id])->find();
+			//返回json数据
+			return json(['content'=>$content]);
+		}
+	}
+	
 }
