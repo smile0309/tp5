@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:58:"E:\tp5\public/../application/admin\view\article\index.html";i:1532783977;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:58:"E:\tp5\public/../application/admin\view\article\index.html";i:1532795932;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -82,6 +82,7 @@
                 </tr>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
             </tbody>
+        
         </table>
         <div class="pagin">
             <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
@@ -148,5 +149,4 @@
 
     </script>
 </body>
-
 </html>
